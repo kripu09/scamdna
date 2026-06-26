@@ -1,0 +1,12 @@
+/* app/globals.css */
+
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0b0f14;
+  color: white;
+}
