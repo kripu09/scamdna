@@ -1,6 +1,6 @@
 import type { AnalyzeResponse } from "@/types/analyzer";
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://scamdna-lmdn.onrender.com";
 
 export async function analyzeMessage(message: string): Promise<AnalyzeResponse> {
   const response = await fetch(`${API_BASE_URL}/analyze`, {
