@@ -6,5 +6,5 @@ load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 ALLOWED_ORIGINS = [
-    "https://scamdna.vercel.app/",
+    "https://scamdna.vercel.app",
 ]
