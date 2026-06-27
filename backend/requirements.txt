@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 fastapi
 uvicorn
 python-dotenv
 google-genai
 httpx
-=======
-
->>>>>>> b0844c7d358dc0ffa024c5c4edfd2c59c5469b8c
