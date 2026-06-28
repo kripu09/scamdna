@@ -34,3 +34,20 @@ export async function getHistory(): Promise<AnalysisHistory[]> {
 
   return (await response.json()) as AnalysisHistory[];
 }
+
+export async function getStats(): Promise<{ total_scans: number }> {
+  const response = await fetch(`${API_BASE_URL}/stats`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // Adding no-cache to ensure we see the latest stats immediately
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to fetch stats.");
+  }
+
+  return (await response.json()) as { total_scans: number };
+}

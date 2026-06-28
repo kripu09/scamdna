@@ -15,8 +15,8 @@ const FOOTER_COLUMNS = [
   {
     heading: "Legal",
     links: [
-      { href: "#privacy", label: "Privacy Policy" },
-      { href: "#terms", label: "Terms" },
+      { href: "/privacy-policy", label: "Privacy Policy" },
+      { href: "/terms", label: "Terms" },
       { href: "https://github.com", label: "GitHub", external: true },
     ],
   },

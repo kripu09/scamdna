@@ -49,10 +49,15 @@ export function AnalyzerCard() {
           value={message}
         />
 
-        <div className="flex items-center justify-between text-[13px] text-[var(--muted)]">
-          <span className="flex items-center gap-1.5">
-            🔒 We never store your original message.
-          </span>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-[13px] text-[var(--muted)] gap-2 sm:gap-0">
+          <div className="flex flex-col gap-1">
+            <span className="flex items-center gap-1.5">
+              🔒 We never store your original message.
+            </span>
+            <span className="text-[12px] opacity-75">
+              Messages are analyzed using AI. Do not submit highly sensitive personal information.
+            </span>
+          </div>
           <span className="font-medium tracking-wide">
             {message.length} / 5000 characters
           </span>

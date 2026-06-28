@@ -6,6 +6,7 @@ import { AccordionItem } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { ScamLibrary } from "@/components/scam-library";
 import { HistorySection } from "@/components/history-section";
+import { ScanCounter } from "@/components/ScanCounter";
 
 const FLOW_STEPS = [
   {
@@ -73,10 +74,11 @@ export default function HomePage() {
               psychological manipulation behind them — before you click,
               reply, or pay.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col items-center justify-center gap-6">
               <Button href="#analyze" size="lg">
                 Analyze a Message
               </Button>
+              <ScanCounter />
             </div>
           </div>
         </Container>

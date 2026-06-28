@@ -62,3 +62,16 @@ def get_recent_analyses(limit: int = 10) -> List[Dict[str, Any]]:
     except Exception as e:
         logger.error(f"Error fetching recent analyses from Supabase: {e}")
         return []
+
+def get_total_scans() -> int:
+    """Returns the total number of scans across the platform."""
+    if not supabase:
+        logger.warning("Skipping get_total_scans: Supabase not configured.")
+        return 0
+
+    try:
+        response = supabase.table("analysis_history").select("id", count="exact").execute()
+        return response.count or 0
+    except Exception as e:
+        logger.error(f"Error counting total scans from Supabase: {e}")
+        return 0

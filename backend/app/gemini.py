@@ -30,10 +30,6 @@ def analyze_message(message: str) -> GeminiAnalyzeResponse:
 
     raw_text = (response.text or "").strip()
 
-    print("========== GEMINI RESPONSE ==========")
-    print(raw_text)
-    print("=====================================")
-
     if raw_text.startswith("```json"):
         raw_text = raw_text.replace("```json", "", 1)
 
@@ -45,14 +41,13 @@ def analyze_message(message: str) -> GeminiAnalyzeResponse:
     try:
         parsed = json.loads(raw_text)
     except json.JSONDecodeError as exc:
-        print("JSON ERROR:")
-        print(raw_text)
+        import logging
+        logging.getLogger(__name__).error(f"JSON ERROR: {raw_text}")
         raise InvalidAIResponseError from exc
 
     try:
         return GeminiAnalyzeResponse.model_validate(parsed)
     except Exception as exc:
-        print("VALIDATION ERROR:")
-        print(parsed)
-        print(exc)
+        import logging
+        logging.getLogger(__name__).error(f"VALIDATION ERROR: {parsed} - {exc}")
         raise InvalidAIResponseError from exc

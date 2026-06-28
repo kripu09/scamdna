@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 from app.gemini import InvalidAIResponseError, analyze_message
 from app.schemas import AnalyzeRequest, AnalyzeResponse
 from app.risk import calculate_risk
-from app.services.history import generate_hash, save_analysis, get_recent_analyses
+from app.services.history import generate_hash, save_analysis, get_recent_analyses, get_total_scans
 
 router = APIRouter()
 
@@ -49,4 +49,10 @@ def history():
     """Returns the most recent analyses (without message hashes)"""
     recent = get_recent_analyses(limit=10)
     return recent
+
+@router.get("/stats")
+def stats():
+    """Returns platform usage statistics"""
+    total = get_total_scans()
+    return {"total_scans": total}
 
