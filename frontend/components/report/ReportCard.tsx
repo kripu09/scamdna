@@ -59,22 +59,30 @@ export function ReportCard({ result }: ReportCardProps) {
           <ManipulationFlow steps={result.manipulation_flow} />
         </AccordionItem>
         <AccordionItem title="Technical Details">
-          <div className="space-y-3 text-sm">
-            <div className="flex items-center justify-between">
-              <span className="text-[var(--muted)]">Scam Type</span>
-              <span className="text-[var(--text)]">{result.scam_type}</span>
+          <div className="space-y-4 text-sm">
+            <div>
+              <span className="block text-[var(--muted)]">Scam Type</span>
+              <span className="mt-0.5 block font-medium text-[var(--text)]">{result.scam_type}</span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-[var(--muted)]">Language Detected</span>
-              <span className="text-[var(--text)]">{result.language_detected}</span>
+            <div>
+              <span className="block text-[var(--muted)]">Language</span>
+              <span className="mt-0.5 block font-medium text-[var(--text)]">{result.language_detected}</span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-[var(--muted)]">Risk Level</span>
-              <span className="text-[var(--text)]">{result.risk_level}</span>
+            <div>
+              <span className="block text-[var(--muted)]">Risk Level</span>
+              <span className="mt-0.5 block font-medium text-[var(--text)]">{result.risk_level}</span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-[var(--muted)]">Triggers Found</span>
-              <span className="text-[var(--text)]">{result.trigger_sentences.length}</span>
+            <div>
+              <span className="block text-[var(--muted)]">Psychological Triggers</span>
+              <span className="mt-0.5 block font-medium text-[var(--text)]">
+                {[
+                  ...new Set(
+                    result.trigger_sentences.map((t) =>
+                      t.factor.charAt(0).toUpperCase() + t.factor.slice(1)
+                    )
+                  ),
+                ].join(" • ") || "None detected"}
+              </span>
             </div>
           </div>
         </AccordionItem>

@@ -38,20 +38,36 @@ ScamDNA supports all major Indian languages and any other language Gemini can un
 
 1. Detect the language of the input message.
 2. Set `language_detected` to the full English name of the language (e.g., "Hindi", "Gujarati", "Tamil", "English").
-3. If the input message is in a language other than English, you MUST write the following fields in that SAME detected language:
+3. If the input message is in a language other than English, you MUST write ALL of the following fields in that SAME detected language:
    - `scam_explanation`
    - `recommendation`
-   - Each `reason` inside `trigger_sentences`
+   - The `reason` field inside EVERY object in `trigger_sentences`
 
 4. If the input is in English, respond in English as normal.
 
-**This is non-negotiable.** Users reading in Hindi must receive explanations in Hindi. Users reading in Gujarati must receive explanations in Gujarati. Always match the output language to the input language.
+**CRITICAL RULE — `reason` field language:**
 
-**Important:** Always keep these fields in English regardless of input language:
+The `reason` field inside `trigger_sentences` must ALWAYS be written in the SAME language as the input message. This is non-negotiable.
+
+Correct examples:
+
+Gujarati input → Gujarati reason:
+{"factor": "fear", "reason": "આ વાક્ય વપરાશકર્તામાં ભય પેદા કરે છે કારણ કે ખાતું બ્લોક થવાની ધમકી આપે છે."}
+
+Hindi input → Hindi reason:
+{"factor": "urgency", "reason": "यह वाक्य तुरंत कार्रवाई करने का दबाव बनाता है।"}
+
+Tamil input → Tamil reason:
+{"factor": "authority", "reason": "இந்த வாக்கியம் அதிகாரப்பூர்வ நிறுவனத்தின் பெயரை பயன்படுத்தி நம்பகத்தன்மையை ஏற்படுத்துகிறது."}
+
+WRONG — never do this for non-English input:
+{"factor": "fear", "reason": "This sentence creates fear because it threatens account suspension."}
+
+**Always keep these fields in English regardless of input language:**
 - `scam_type` — always in English (e.g., "UPI Fraud", "Bank KYC Scam")
 - `language_detected` — always in English (e.g., "Hindi", "Gujarati")
-- `factor` inside `trigger_sentences` — always in English
-- `sentence` inside `trigger_sentences` — always quote the EXACT original text
+- `factor` inside `trigger_sentences` — always in English (e.g., "fear", "urgency")
+- `sentence` inside `trigger_sentences` — always quote the EXACT original text verbatim
 
 ---
 
