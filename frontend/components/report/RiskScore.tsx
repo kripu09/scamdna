@@ -1,8 +1,13 @@
+import { Globe } from "lucide-react";
+
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import type { AnalyzeResponse } from "@/types/analyzer";
 
-type RiskScoreProps = Pick<AnalyzeResponse, "risk_score" | "risk_level" | "scam_type">;
+type RiskScoreProps = Pick<
+  AnalyzeResponse,
+  "risk_score" | "risk_level" | "scam_type" | "language_detected"
+>;
 
 type RiskTone = "success" | "warning" | "danger";
 
@@ -12,7 +17,12 @@ function getRiskTone(score: number): { badgeTone: RiskTone; color: string } {
   return { badgeTone: "success", color: "#00C16A" };
 }
 
-export function RiskScore({ risk_score, risk_level, scam_type }: RiskScoreProps) {
+export function RiskScore({
+  risk_score,
+  risk_level,
+  scam_type,
+  language_detected,
+}: RiskScoreProps) {
   const tone = getRiskTone(risk_score);
   const circumference = 2 * Math.PI * 40;
   const dashOffset = circumference - (circumference * risk_score) / 100;
@@ -47,6 +57,14 @@ export function RiskScore({ risk_score, risk_level, scam_type }: RiskScoreProps)
             <span className="text-sm text-[var(--muted)]">·</span>
             <span className="text-sm text-[var(--muted)]">{scam_type}</span>
           </div>
+          {language_detected && (
+            <div className="mt-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1 text-[12px] font-medium text-[var(--muted)]">
+                <Globe className="size-3.5 text-[var(--primary)]" />
+                {language_detected}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </Card>

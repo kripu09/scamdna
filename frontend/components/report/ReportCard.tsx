@@ -17,6 +17,7 @@ export function ReportCard({ result }: ReportCardProps) {
     <div className="space-y-4">
       {/* 1. Risk Score — most prominent */}
       <RiskScore
+        language_detected={result.language_detected}
         risk_level={result.risk_level}
         risk_score={result.risk_score}
         scam_type={result.scam_type}
