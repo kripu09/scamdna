@@ -4,7 +4,7 @@ import { AnalyzerCard } from "@/components/analyzer/analyzer-card";
 import { Container } from "@/components/layout/Container";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
+import { ScamLibrary } from "@/components/scam-library";
 
 const FLOW_STEPS = [
   {
@@ -126,27 +126,15 @@ export default function HomePage() {
       <section id="library" className="border-t border-[var(--border)] py-12 sm:py-16">
         <Container>
           <h2 className="font-heading text-[28px] font-bold tracking-tight text-[var(--text)] sm:text-[30px] lg:text-4xl">
-            Scam Library
+            Common Scam Types
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-[var(--muted)]">
-            A curated reference of common scam patterns, techniques, and
-            response guidance.
+            Learn how common scams work and recognize warning signs before becoming a victim.
           </p>
 
-          <Card className="mt-8 p-5">
-            <div className="flex items-start gap-3">
-              <BookOpen className="mt-0.5 size-5 shrink-0 text-[var(--primary)]" />
-              <div>
-                <p className="text-sm font-medium text-[var(--text)]">
-                  Coming soon
-                </p>
-                <p className="mt-1 text-sm leading-relaxed text-[var(--muted)]">
-                  Scam examples, typologies, and response guidance will be
-                  available here in a searchable reference library.
-                </p>
-              </div>
-            </div>
-          </Card>
+          <div className="mt-10">
+            <ScamLibrary />
+          </div>
         </Container>
       </section>
 
