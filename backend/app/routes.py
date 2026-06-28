@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 from app.gemini import InvalidAIResponseError, analyze_message
 from app.schemas import AnalyzeRequest, AnalyzeResponse
 from app.risk import calculate_risk
+from app.services.history import generate_hash, save_analysis, get_recent_analyses
 
 router = APIRouter()
 
@@ -27,6 +28,10 @@ def analyze(payload: AnalyzeRequest) -> AnalyzeResponse:
 
     risk_score, risk_level = calculate_risk(analysis.psychological_factors)
 
+    # Privacy-first history storage
+    message_hash = generate_hash(message)
+    save_analysis(message_hash, risk_score, analysis.scam_type)
+
     return AnalyzeResponse(
         risk_score=risk_score,
         risk_level=risk_level,
@@ -38,3 +43,10 @@ def analyze(payload: AnalyzeRequest) -> AnalyzeResponse:
         recommendation=analysis.recommendation,
         manipulation_flow=analysis.manipulation_flow,
     )
+
+@router.get("/history")
+def history():
+    """Returns the most recent analyses (without message hashes)"""
+    recent = get_recent_analyses(limit=10)
+    return recent
+

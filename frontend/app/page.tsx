@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/Container";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { ScamLibrary } from "@/components/scam-library";
+import { HistorySection } from "@/components/history-section";
 
 const FLOW_STEPS = [
   {
@@ -134,6 +135,23 @@ export default function HomePage() {
 
           <div className="mt-10">
             <ScamLibrary />
+          </div>
+        </Container>
+      </section>
+
+      {/* Recent Analysis History */}
+      <section id="history" className="border-t border-[var(--border)] py-12 sm:py-16">
+        <Container>
+          <h2 className="font-heading text-[28px] font-bold tracking-tight text-[var(--text)] sm:text-[30px] lg:text-4xl">
+            Recent Scans
+          </h2>
+          <p className="mt-3 max-w-lg text-sm leading-relaxed text-[var(--muted)]">
+            A privacy-first history of recently analyzed messages by ScamDNA users.
+            Original messages are never stored or logged.
+          </p>
+
+          <div className="mt-10">
+            <HistorySection />
           </div>
         </Container>
       </section>

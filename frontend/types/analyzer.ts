@@ -25,3 +25,9 @@ export type AnalyzeResponse = {
   recommendation: string;
   manipulation_flow: string[];
 };
+
+export type AnalysisHistory = {
+  scam_type: string;
+  risk_score: number;
+  created_at: string;
+};
