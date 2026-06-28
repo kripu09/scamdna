@@ -59,30 +59,40 @@ export function ReportCard({ result }: ReportCardProps) {
           <ManipulationFlow steps={result.manipulation_flow} />
         </AccordionItem>
         <AccordionItem title="Technical Details">
-          <div className="space-y-4 text-sm">
+          <div className="grid gap-4 sm:grid-cols-2 text-sm">
             <div>
-              <span className="block text-[var(--muted)]">Scam Type</span>
-              <span className="mt-0.5 block font-medium text-[var(--text)]">{result.scam_type}</span>
+              <span className="block text-xs font-medium uppercase tracking-wider text-[var(--muted)]">Scam Type</span>
+              <span className="mt-1 block font-medium text-[var(--text)]">{result.scam_type}</span>
             </div>
             <div>
-              <span className="block text-[var(--muted)]">Language</span>
-              <span className="mt-0.5 block font-medium text-[var(--text)]">{result.language_detected}</span>
+              <span className="block text-xs font-medium uppercase tracking-wider text-[var(--muted)]">Language</span>
+              <span className="mt-1 block font-medium text-[var(--text)]">{result.language_detected}</span>
             </div>
             <div>
-              <span className="block text-[var(--muted)]">Risk Level</span>
-              <span className="mt-0.5 block font-medium text-[var(--text)]">{result.risk_level}</span>
+              <span className="block text-xs font-medium uppercase tracking-wider text-[var(--muted)]">Risk Level</span>
+              <span className="mt-1 block font-medium text-[var(--text)]">{result.risk_level}</span>
             </div>
             <div>
-              <span className="block text-[var(--muted)]">Psychological Triggers</span>
-              <span className="mt-0.5 block font-medium text-[var(--text)]">
+              <span className="block text-xs font-medium uppercase tracking-wider text-[var(--muted)]">Psychological Triggers</span>
+              <div className="mt-1.5 flex flex-wrap gap-1.5">
                 {[
                   ...new Set(
                     result.trigger_sentences.map((t) =>
                       t.factor.charAt(0).toUpperCase() + t.factor.slice(1)
                     )
                   ),
-                ].join(" • ") || "None detected"}
-              </span>
+                ].map((trigger, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center rounded border border-[var(--border)] bg-[var(--surface)] px-2 py-0.5 text-[11px] font-semibold text-[var(--text)]"
+                  >
+                    {trigger}
+                  </span>
+                ))}
+                {result.trigger_sentences.length === 0 && (
+                  <span className="text-sm font-medium text-[var(--muted)]">None detected</span>
+                )}
+              </div>
             </div>
           </div>
         </AccordionItem>
