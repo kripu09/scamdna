@@ -17,7 +17,7 @@ const FOOTER_COLUMNS = [
     links: [
       { href: "/privacy-policy", label: "Privacy Policy" },
       { href: "/terms", label: "Terms" },
-      { href: "https://github.com", label: "GitHub", external: true },
+      { href: "https://github.com/kripu09/scamdna", label: "GitHub", external: true },
     ],
   },
 ];
